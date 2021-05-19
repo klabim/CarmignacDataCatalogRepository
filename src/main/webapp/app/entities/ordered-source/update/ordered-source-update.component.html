@@ -1,0 +1,154 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-ordered-source-heading"
+        data-cy="OrderedSourceCreateUpdateHeading"
+        jhiTranslate="dicoCarmignacApp.orderedSource.home.createOrEditLabel"
+      >
+        Create or edit a Ordered Source
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.orderedSource.orderSource" for="field_orderSource"
+            >Order Source</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="orderSource"
+            id="field_orderSource"
+            data-cy="orderSource"
+            formControlName="orderSource"
+          />
+          <div *ngIf="editForm.get('orderSource')!.invalid && (editForm.get('orderSource')!.dirty || editForm.get('orderSource')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('orderSource')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('orderSource')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.orderedSource.updateDate" for="field_updateDate"
+            >Update Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_updateDate"
+              data-cy="updateDate"
+              type="text"
+              class="form-control"
+              name="updateDate"
+              ngbDatepicker
+              #updateDateDp="ngbDatepicker"
+              formControlName="updateDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.orderedSource.creationDate" for="field_creationDate"
+            >Creation Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_creationDate"
+              data-cy="creationDate"
+              type="text"
+              class="form-control"
+              name="creationDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="creationDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.orderedSource.linkedSource" for="field_linkedSource"
+            >Linked Source</label
+          >
+          <select class="form-control" id="field_linkedSource" data-cy="linkedSource" name="linkedSource" formControlName="linkedSource">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sourceOption.id === editForm.get('linkedSource')!.value?.id ? editForm.get('linkedSource')!.value : sourceOption"
+              *ngFor="let sourceOption of linkedSourcesCollection; trackBy: trackSourceById"
+            >
+              {{ sourceOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.orderedSource.sourcePriority" for="field_sourcePriority"
+            >Source Priority</label
+          >
+          <select
+            class="form-control"
+            id="field_sourcePriority"
+            data-cy="sourcePriority"
+            name="sourcePriority"
+            formControlName="sourcePriority"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                sourcePriorityOption.id === editForm.get('sourcePriority')!.value?.id
+                  ? editForm.get('sourcePriority')!.value
+                  : sourcePriorityOption
+              "
+              *ngFor="let sourcePriorityOption of sourcePrioritiesSharedCollection; trackBy: trackSourcePriorityById"
+            >
+              {{ sourcePriorityOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

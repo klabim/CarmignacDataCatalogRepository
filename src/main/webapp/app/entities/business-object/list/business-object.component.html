@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="BusinessObjectHeading">
+    <span jhiTranslate="dicoCarmignacApp.businessObject.home.title">Business Objects</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.businessObject.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-business-object"
+        [routerLink]="['/business-object/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.businessObject.home.createLabel"> Create a new Business Object </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="businessObjects?.length === 0">
+    <span jhiTranslate="dicoCarmignacApp.businessObject.home.notFound">No businessObjects found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="businessObjects && businessObjects.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.idBo">Id Bo</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.definition">Definition</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.updateDate">Update Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.creationDate">Creation Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.businessObject.attributeList">Attribute List</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let businessObject of businessObjects; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/business-object', businessObject.id, 'view']">{{ businessObject.id }}</a>
+          </td>
+          <td>{{ businessObject.idBo }}</td>
+          <td>{{ businessObject.name }}</td>
+          <td>{{ businessObject.definition }}</td>
+          <td>{{ businessObject.updateDate | formatMediumDate }}</td>
+          <td>{{ businessObject.creationDate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="businessObject.attributeList">
+              <a [routerLink]="['/attribute', businessObject.attributeList?.id, 'view']">{{ businessObject.attributeList?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/business-object', businessObject.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/business-object', businessObject.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(businessObject)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+{
+  "name": "Attribute",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "internalExternal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cardinality",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "enumeration",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lPattern",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "longName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "definition",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updateDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "sourcePriority",
+      "otherEntityRelationshipName": "attribute",
+      "relationshipName": "goldenSourcePriority",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "businessObject",
+      "otherEntityRelationshipName": "attribute",
+      "relationshipName": "linkedType",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "businessObject",
+      "otherEntityRelationshipName": "attributeList",
+      "relationshipName": "businessObject"
+    }
+  ],
+  "entityTableName": "attribute",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210519150815"
+}

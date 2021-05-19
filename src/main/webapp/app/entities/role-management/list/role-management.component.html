@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="RoleManagementHeading">
+    <span jhiTranslate="dicoCarmignacApp.roleManagement.home.title">Role Managements</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.roleManagement.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-role-management"
+        [routerLink]="['/role-management/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.roleManagement.home.createLabel"> Create a new Role Management </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="roleManagements?.length === 0">
+    <span jhiTranslate="dicoCarmignacApp.roleManagement.home.notFound">No roleManagements found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="roleManagements && roleManagements.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.idDataRole">Id Data Role</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.updateDate">Update Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.creationDate">Creation Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.respByException">Resp By Exception</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.responsible">Responsible</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.dataRole">Data Role</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.roleManagement.dataService">Data Service</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roleManagement of roleManagements; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/role-management', roleManagement.id, 'view']">{{ roleManagement.id }}</a>
+          </td>
+          <td>{{ roleManagement.idDataRole }}</td>
+          <td>{{ roleManagement.updateDate | formatMediumDate }}</td>
+          <td>{{ roleManagement.creationDate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="roleManagement.respByException">
+              <a [routerLink]="['/attribute', roleManagement.respByException?.id, 'view']">{{ roleManagement.respByException?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="roleManagement.responsible">
+              <a [routerLink]="['/business-object', roleManagement.responsible?.id, 'view']">{{ roleManagement.responsible?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="roleManagement.dataRole">
+              <a [routerLink]="['/data-role', roleManagement.dataRole?.id, 'view']">{{ roleManagement.dataRole?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="roleManagement.dataService">
+              <a [routerLink]="['/data-service', roleManagement.dataService?.id, 'view']">{{ roleManagement.dataService?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/role-management', roleManagement.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/role-management', roleManagement.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(roleManagement)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

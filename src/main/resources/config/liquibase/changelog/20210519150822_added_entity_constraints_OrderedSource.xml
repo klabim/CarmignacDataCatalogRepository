@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity OrderedSource.
+    -->
+    <changeSet id="20210519150822-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="linked_source_id"
+                                 baseTableName="ordered_source"
+                                 constraintName="fk_ordered_source__linked_source_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="source"/>
+
+        <addForeignKeyConstraint baseColumnNames="source_priority_id"
+                                 baseTableName="ordered_source"
+                                 constraintName="fk_ordered_source__source_priority_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="source_priority"/>
+    </changeSet>
+</databaseChangeLog>

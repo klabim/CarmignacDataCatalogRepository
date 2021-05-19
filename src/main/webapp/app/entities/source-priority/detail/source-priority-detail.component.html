@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="sourcePriority">
+      <h2 data-cy="sourcePriorityDetailsHeading">
+        <span jhiTranslate="dicoCarmignacApp.sourcePriority.detail.title">Source Priority</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ sourcePriority.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.sourcePriority.idSourcePriority">Id Source Priority</span></dt>
+        <dd>
+          <span>{{ sourcePriority.idSourcePriority }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.sourcePriority.name">Name</span></dt>
+        <dd>
+          <span>{{ sourcePriority.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.sourcePriority.description">Description</span></dt>
+        <dd>
+          <span>{{ sourcePriority.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.sourcePriority.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ sourcePriority.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.sourcePriority.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ sourcePriority.creationDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/source-priority', sourcePriority.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

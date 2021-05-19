@@ -1,0 +1,173 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-role-management-heading"
+        data-cy="RoleManagementCreateUpdateHeading"
+        jhiTranslate="dicoCarmignacApp.roleManagement.home.createOrEditLabel"
+      >
+        Create or edit a Role Management
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.idDataRole" for="field_idDataRole"
+            >Id Data Role</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="idDataRole"
+            id="field_idDataRole"
+            data-cy="idDataRole"
+            formControlName="idDataRole"
+          />
+          <div
+            *ngIf="editForm.get('idDataRole')!.invalid && (editForm.get('idDataRole')!.dirty || editForm.get('idDataRole')!.touched)"
+          ></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.updateDate" for="field_updateDate"
+            >Update Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_updateDate"
+              data-cy="updateDate"
+              type="text"
+              class="form-control"
+              name="updateDate"
+              ngbDatepicker
+              #updateDateDp="ngbDatepicker"
+              formControlName="updateDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.creationDate" for="field_creationDate"
+            >Creation Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_creationDate"
+              data-cy="creationDate"
+              type="text"
+              class="form-control"
+              name="creationDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="creationDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.respByException" for="field_respByException"
+            >Resp By Exception</label
+          >
+          <select
+            class="form-control"
+            id="field_respByException"
+            data-cy="respByException"
+            name="respByException"
+            formControlName="respByException"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                attributeOption.id === editForm.get('respByException')!.value?.id ? editForm.get('respByException')!.value : attributeOption
+              "
+              *ngFor="let attributeOption of respByExceptionsCollection; trackBy: trackAttributeById"
+            >
+              {{ attributeOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.responsible" for="field_responsible"
+            >Responsible</label
+          >
+          <select class="form-control" id="field_responsible" data-cy="responsible" name="responsible" formControlName="responsible">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                businessObjectOption.id === editForm.get('responsible')!.value?.id
+                  ? editForm.get('responsible')!.value
+                  : businessObjectOption
+              "
+              *ngFor="let businessObjectOption of responsiblesCollection; trackBy: trackBusinessObjectById"
+            >
+              {{ businessObjectOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.dataRole" for="field_dataRole">Data Role</label>
+          <select class="form-control" id="field_dataRole" data-cy="dataRole" name="dataRole" formControlName="dataRole">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="dataRoleOption.id === editForm.get('dataRole')!.value?.id ? editForm.get('dataRole')!.value : dataRoleOption"
+              *ngFor="let dataRoleOption of dataRolesCollection; trackBy: trackDataRoleById"
+            >
+              {{ dataRoleOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.roleManagement.dataService" for="field_dataService"
+            >Data Service</label
+          >
+          <select class="form-control" id="field_dataService" data-cy="dataService" name="dataService" formControlName="dataService">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                dataServiceOption.id === editForm.get('dataService')!.value?.id ? editForm.get('dataService')!.value : dataServiceOption
+              "
+              *ngFor="let dataServiceOption of dataServicesCollection; trackBy: trackDataServiceById"
+            >
+              {{ dataServiceOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

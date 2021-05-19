@@ -1,0 +1,86 @@
+<div>
+  <h2 id="page-heading" data-cy="SourcePriorityHeading">
+    <span jhiTranslate="dicoCarmignacApp.sourcePriority.home.title">Source Priorities</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.sourcePriority.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-source-priority"
+        [routerLink]="['/source-priority/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.sourcePriority.home.createLabel"> Create a new Source Priority </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="sourcePriorities?.length === 0">
+    <span jhiTranslate="dicoCarmignacApp.sourcePriority.home.notFound">No sourcePriorities found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="sourcePriorities && sourcePriorities.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.sourcePriority.idSourcePriority">Id Source Priority</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.sourcePriority.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.sourcePriority.description">Description</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.sourcePriority.updateDate">Update Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.sourcePriority.creationDate">Creation Date</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sourcePriority of sourcePriorities; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/source-priority', sourcePriority.id, 'view']">{{ sourcePriority.id }}</a>
+          </td>
+          <td>{{ sourcePriority.idSourcePriority }}</td>
+          <td>{{ sourcePriority.name }}</td>
+          <td>{{ sourcePriority.description }}</td>
+          <td>{{ sourcePriority.updateDate | formatMediumDate }}</td>
+          <td>{{ sourcePriority.creationDate | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/source-priority', sourcePriority.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/source-priority', sourcePriority.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(sourcePriority)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

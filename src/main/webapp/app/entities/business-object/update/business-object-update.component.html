@@ -1,0 +1,132 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-business-object-heading"
+        data-cy="BusinessObjectCreateUpdateHeading"
+        jhiTranslate="dicoCarmignacApp.businessObject.home.createOrEditLabel"
+      >
+        Create or edit a Business Object
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.idBo" for="field_idBo">Id Bo</label>
+          <input type="text" class="form-control" name="idBo" id="field_idBo" data-cy="idBo" formControlName="idBo" />
+          <div *ngIf="editForm.get('idBo')!.invalid && (editForm.get('idBo')!.dirty || editForm.get('idBo')!.touched)"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.definition" for="field_definition"
+            >Definition</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="definition"
+            id="field_definition"
+            data-cy="definition"
+            formControlName="definition"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.updateDate" for="field_updateDate"
+            >Update Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_updateDate"
+              data-cy="updateDate"
+              type="text"
+              class="form-control"
+              name="updateDate"
+              ngbDatepicker
+              #updateDateDp="ngbDatepicker"
+              formControlName="updateDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.creationDate" for="field_creationDate"
+            >Creation Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_creationDate"
+              data-cy="creationDate"
+              type="text"
+              class="form-control"
+              name="creationDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="creationDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.businessObject.attributeList" for="field_attributeList"
+            >Attribute List</label
+          >
+          <select
+            class="form-control"
+            id="field_attributeList"
+            data-cy="attributeList"
+            name="attributeList"
+            formControlName="attributeList"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                attributeOption.id === editForm.get('attributeList')!.value?.id ? editForm.get('attributeList')!.value : attributeOption
+              "
+              *ngFor="let attributeOption of attributesSharedCollection; trackBy: trackAttributeById"
+            >
+              {{ attributeOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

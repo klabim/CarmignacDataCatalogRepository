@@ -1,0 +1,43 @@
+{
+  "name": "OrderedSource",
+  "fields": [
+    {
+      "fieldName": "orderSource",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "updateDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "source",
+      "otherEntityRelationshipName": "orderedSource",
+      "relationshipName": "type",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "sourcePriority",
+      "otherEntityRelationshipName": "attributeList",
+      "relationshipName": "sourcePriority"
+    }
+  ],
+  "entityTableName": "ordered_source",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210519144856"
+}

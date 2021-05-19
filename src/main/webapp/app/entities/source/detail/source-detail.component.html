@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="source">
+      <h2 data-cy="sourceDetailsHeading"><span jhiTranslate="dicoCarmignacApp.source.detail.title">Source</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ source.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.source.idGloden">Id Gloden</span></dt>
+        <dd>
+          <span>{{ source.idGloden }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.source.name">Name</span></dt>
+        <dd>
+          <span>{{ source.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.source.description">Description</span></dt>
+        <dd>
+          <span>{{ source.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.source.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ source.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.source.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ source.creationDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/source', source.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -48,6 +48,16 @@ public class CacheConfiguration {
             createCache(cm, com.carmignac.data.dico.domain.User.class.getName());
             createCache(cm, com.carmignac.data.dico.domain.Authority.class.getName());
             createCache(cm, com.carmignac.data.dico.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.carmignac.data.dico.domain.Attribute.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.Attribute.class.getName() + ".businessObjects");
+            createCache(cm, com.carmignac.data.dico.domain.BusinessObject.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.Source.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.DataService.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.DataRole.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.RoleManagement.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.SourcePriority.class.getName());
+            createCache(cm, com.carmignac.data.dico.domain.SourcePriority.class.getName() + ".attributeLists");
+            createCache(cm, com.carmignac.data.dico.domain.OrderedSource.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

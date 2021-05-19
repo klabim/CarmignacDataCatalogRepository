@@ -1,0 +1,28 @@
+{
+  "dicoCarmignacApp": {
+    "dataRole": {
+      "home": {
+        "title": "Data Roles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Data Role",
+        "createOrEditLabel": "Create or edit a Data Role",
+        "notFound": "No Data Roles found"
+      },
+      "created": "A new Data Role is created with identifier {{ param }}",
+      "updated": "A Data Role is updated with identifier {{ param }}",
+      "deleted": "A Data Role is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Data Role {{ id }}?"
+      },
+      "detail": {
+        "title": "Data Role"
+      },
+      "id": "ID",
+      "idDataRole": "Id Data Role",
+      "name": "Name",
+      "description": "Description",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date"
+    }
+  }
+}

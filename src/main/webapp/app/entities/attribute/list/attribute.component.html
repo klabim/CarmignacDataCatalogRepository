@@ -1,0 +1,106 @@
+<div>
+  <h2 id="page-heading" data-cy="AttributeHeading">
+    <span jhiTranslate="dicoCarmignacApp.attribute.home.title">Attributes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.attribute.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-attribute"
+        [routerLink]="['/attribute/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="dicoCarmignacApp.attribute.home.createLabel"> Create a new Attribute </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="attributes?.length === 0">
+    <span jhiTranslate="dicoCarmignacApp.attribute.home.notFound">No attributes found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="attributes && attributes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.id">Id</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.name">Name</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.internalExternal">Internal External</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.cardinality">Cardinality</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.enumeration">Enumeration</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.lPattern">L Pattern</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.longName">Long Name</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.definition">Definition</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.updateDate">Update Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.creationDate">Creation Date</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.type">Type</span></th>
+          <th scope="col"><span jhiTranslate="dicoCarmignacApp.attribute.type">Type</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let attribute of attributes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/attribute', attribute.id, 'view']">{{ attribute.id }}</a>
+          </td>
+          <td>{{ attribute.name }}</td>
+          <td>{{ attribute.internalExternal }}</td>
+          <td>{{ attribute.cardinality }}</td>
+          <td>{{ attribute.enumeration }}</td>
+          <td>{{ attribute.lPattern }}</td>
+          <td>{{ attribute.longName }}</td>
+          <td>{{ attribute.definition }}</td>
+          <td>{{ attribute.updateDate | formatMediumDate }}</td>
+          <td>{{ attribute.creationDate | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="attribute.type">
+              <a [routerLink]="['/source-priority', attribute.type?.id, 'view']">{{ attribute.type?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="attribute.type">
+              <a [routerLink]="['/business-object', attribute.type?.id, 'view']">{{ attribute.type?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/attribute', attribute.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/attribute', attribute.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(attribute)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

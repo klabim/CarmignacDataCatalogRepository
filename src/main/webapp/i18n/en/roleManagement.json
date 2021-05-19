@@ -1,0 +1,30 @@
+{
+  "dicoCarmignacApp": {
+    "roleManagement": {
+      "home": {
+        "title": "Role Managements",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Role Management",
+        "createOrEditLabel": "Create or edit a Role Management",
+        "notFound": "No Role Managements found"
+      },
+      "created": "A new Role Management is created with identifier {{ param }}",
+      "updated": "A Role Management is updated with identifier {{ param }}",
+      "deleted": "A Role Management is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Role Management {{ id }}?"
+      },
+      "detail": {
+        "title": "Role Management"
+      },
+      "id": "ID",
+      "idDataRole": "Id Data Role",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date",
+      "respByException": "Resp By Exception",
+      "responsible": "Responsible",
+      "dataRole": "Data Role",
+      "dataService": "Data Service"
+    }
+  }
+}

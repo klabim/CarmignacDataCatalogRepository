@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="roleManagement">
+      <h2 data-cy="roleManagementDetailsHeading">
+        <span jhiTranslate="dicoCarmignacApp.roleManagement.detail.title">Role Management</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ roleManagement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.idDataRole">Id Data Role</span></dt>
+        <dd>
+          <span>{{ roleManagement.idDataRole }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ roleManagement.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ roleManagement.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.respByException">Resp By Exception</span></dt>
+        <dd>
+          <div *ngIf="roleManagement.respByException">
+            <a [routerLink]="['/attribute', roleManagement.respByException?.id, 'view']">{{ roleManagement.respByException?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.responsible">Responsible</span></dt>
+        <dd>
+          <div *ngIf="roleManagement.responsible">
+            <a [routerLink]="['/business-object', roleManagement.responsible?.id, 'view']">{{ roleManagement.responsible?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.dataRole">Data Role</span></dt>
+        <dd>
+          <div *ngIf="roleManagement.dataRole">
+            <a [routerLink]="['/data-role', roleManagement.dataRole?.id, 'view']">{{ roleManagement.dataRole?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.roleManagement.dataService">Data Service</span></dt>
+        <dd>
+          <div *ngIf="roleManagement.dataService">
+            <a [routerLink]="['/data-service', roleManagement.dataService?.id, 'view']">{{ roleManagement.dataService?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/role-management', roleManagement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

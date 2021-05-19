@@ -1,0 +1,29 @@
+{
+  "dicoCarmignacApp": {
+    "sourcePriority": {
+      "home": {
+        "title": "Source Priorities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Source Priority",
+        "createOrEditLabel": "Create or edit a Source Priority",
+        "notFound": "No Source Priorities found"
+      },
+      "created": "A new Source Priority is created with identifier {{ param }}",
+      "updated": "A Source Priority is updated with identifier {{ param }}",
+      "deleted": "A Source Priority is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Source Priority {{ id }}?"
+      },
+      "detail": {
+        "title": "Source Priority"
+      },
+      "id": "ID",
+      "idSourcePriority": "Id Source Priority",
+      "name": "Name",
+      "description": "Description",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date",
+      "attributeList": "Attribute List"
+    }
+  }
+}

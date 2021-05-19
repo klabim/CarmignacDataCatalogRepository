@@ -1,0 +1,28 @@
+{
+  "dicoCarmignacApp": {
+    "dataService": {
+      "home": {
+        "title": "Data Services",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Data Service",
+        "createOrEditLabel": "Create or edit a Data Service",
+        "notFound": "No Data Services found"
+      },
+      "created": "A new Data Service is created with identifier {{ param }}",
+      "updated": "A Data Service is updated with identifier {{ param }}",
+      "deleted": "A Data Service is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Data Service {{ id }}?"
+      },
+      "detail": {
+        "title": "Data Service"
+      },
+      "id": "ID",
+      "idService": "Id Service",
+      "name": "Name",
+      "description": "Description",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date"
+    }
+  }
+}

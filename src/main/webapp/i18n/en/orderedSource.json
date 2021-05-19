@@ -1,0 +1,28 @@
+{
+  "dicoCarmignacApp": {
+    "orderedSource": {
+      "home": {
+        "title": "Ordered Sources",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Ordered Source",
+        "createOrEditLabel": "Create or edit a Ordered Source",
+        "notFound": "No Ordered Sources found"
+      },
+      "created": "A new Ordered Source is created with identifier {{ param }}",
+      "updated": "A Ordered Source is updated with identifier {{ param }}",
+      "deleted": "A Ordered Source is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Ordered Source {{ id }}?"
+      },
+      "detail": {
+        "title": "Ordered Source"
+      },
+      "id": "ID",
+      "orderSource": "Order Source",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date",
+      "type": "Type",
+      "sourcePriority": "Source Priority"
+    }
+  }
+}

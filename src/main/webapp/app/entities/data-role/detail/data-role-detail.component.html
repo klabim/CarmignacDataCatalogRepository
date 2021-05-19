@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dataRole">
+      <h2 data-cy="dataRoleDetailsHeading"><span jhiTranslate="dicoCarmignacApp.dataRole.detail.title">Data Role</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dataRole.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.dataRole.idDataRole">Id Data Role</span></dt>
+        <dd>
+          <span>{{ dataRole.idDataRole }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.dataRole.name">Name</span></dt>
+        <dd>
+          <span>{{ dataRole.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.dataRole.description">Description</span></dt>
+        <dd>
+          <span>{{ dataRole.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.dataRole.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ dataRole.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.dataRole.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ dataRole.creationDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/data-role', dataRole.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

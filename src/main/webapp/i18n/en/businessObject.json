@@ -1,0 +1,29 @@
+{
+  "dicoCarmignacApp": {
+    "businessObject": {
+      "home": {
+        "title": "Business Objects",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Business Object",
+        "createOrEditLabel": "Create or edit a Business Object",
+        "notFound": "No Business Objects found"
+      },
+      "created": "A new Business Object is created with identifier {{ param }}",
+      "updated": "A Business Object is updated with identifier {{ param }}",
+      "deleted": "A Business Object is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Business Object {{ id }}?"
+      },
+      "detail": {
+        "title": "Business Object"
+      },
+      "id": "ID",
+      "idBo": "Id Bo",
+      "name": "Name",
+      "definition": "Definition",
+      "updateDate": "Update Date",
+      "creationDate": "Creation Date",
+      "attributeList": "Attribute List"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-attribute-heading"
+        data-cy="AttributeCreateUpdateHeading"
+        jhiTranslate="dicoCarmignacApp.attribute.home.createOrEditLabel"
+      >
+        Create or edit a Attribute
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.id" for="field_id">Id</label>
+          <input type="text" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          <div *ngIf="editForm.get('id')!.invalid && (editForm.get('id')!.dirty || editForm.get('id')!.touched)"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.internalExternal" for="field_internalExternal"
+            >Internal External</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="internalExternal"
+            id="field_internalExternal"
+            data-cy="internalExternal"
+            formControlName="internalExternal"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.cardinality" for="field_cardinality"
+            >Cardinality</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cardinality"
+            id="field_cardinality"
+            data-cy="cardinality"
+            formControlName="cardinality"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.enumeration" for="field_enumeration"
+            >Enumeration</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="enumeration"
+            id="field_enumeration"
+            data-cy="enumeration"
+            formControlName="enumeration"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.lPattern" for="field_lPattern">L Pattern</label>
+          <input type="text" class="form-control" name="lPattern" id="field_lPattern" data-cy="lPattern" formControlName="lPattern" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.longName" for="field_longName">Long Name</label>
+          <input type="text" class="form-control" name="longName" id="field_longName" data-cy="longName" formControlName="longName" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.definition" for="field_definition">Definition</label>
+          <input
+            type="text"
+            class="form-control"
+            name="definition"
+            id="field_definition"
+            data-cy="definition"
+            formControlName="definition"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.updateDate" for="field_updateDate">Update Date</label>
+          <div class="input-group">
+            <input
+              id="field_updateDate"
+              data-cy="updateDate"
+              type="text"
+              class="form-control"
+              name="updateDate"
+              ngbDatepicker
+              #updateDateDp="ngbDatepicker"
+              formControlName="updateDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="updateDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.creationDate" for="field_creationDate"
+            >Creation Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_creationDate"
+              data-cy="creationDate"
+              type="text"
+              class="form-control"
+              name="creationDate"
+              ngbDatepicker
+              #creationDateDp="ngbDatepicker"
+              formControlName="creationDate"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()">
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.goldenSourcePriority" for="field_goldenSourcePriority"
+            >Golden Source Priority</label
+          >
+          <select
+            class="form-control"
+            id="field_goldenSourcePriority"
+            data-cy="goldenSourcePriority"
+            name="goldenSourcePriority"
+            formControlName="goldenSourcePriority"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                sourcePriorityOption.id === editForm.get('goldenSourcePriority')!.value?.id
+                  ? editForm.get('goldenSourcePriority')!.value
+                  : sourcePriorityOption
+              "
+              *ngFor="let sourcePriorityOption of goldenSourcePrioritiesCollection; trackBy: trackSourcePriorityById"
+            >
+              {{ sourcePriorityOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="dicoCarmignacApp.attribute.linkedType" for="field_linkedType">Linked Type</label>
+          <select class="form-control" id="field_linkedType" data-cy="linkedType" name="linkedType" formControlName="linkedType">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                businessObjectOption.id === editForm.get('linkedType')!.value?.id ? editForm.get('linkedType')!.value : businessObjectOption
+              "
+              *ngFor="let businessObjectOption of linkedTypesCollection; trackBy: trackBusinessObjectById"
+            >
+              {{ businessObjectOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

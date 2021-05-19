@@ -1,0 +1,76 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="attribute">
+      <h2 data-cy="attributeDetailsHeading"><span jhiTranslate="dicoCarmignacApp.attribute.detail.title">Attribute</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.id">Id</span></dt>
+        <dd>
+          <span>{{ attribute.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.name">Name</span></dt>
+        <dd>
+          <span>{{ attribute.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.internalExternal">Internal External</span></dt>
+        <dd>
+          <span>{{ attribute.internalExternal }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.cardinality">Cardinality</span></dt>
+        <dd>
+          <span>{{ attribute.cardinality }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.enumeration">Enumeration</span></dt>
+        <dd>
+          <span>{{ attribute.enumeration }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.lPattern">L Pattern</span></dt>
+        <dd>
+          <span>{{ attribute.lPattern }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.longName">Long Name</span></dt>
+        <dd>
+          <span>{{ attribute.longName }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.definition">Definition</span></dt>
+        <dd>
+          <span>{{ attribute.definition }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ attribute.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ attribute.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.goldenSourcePriority">Golden Source Priority</span></dt>
+        <dd>
+          <div *ngIf="attribute.goldenSourcePriority">
+            <a [routerLink]="['/source-priority', attribute.goldenSourcePriority?.id, 'view']">{{ attribute.goldenSourcePriority?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.attribute.linkedType">Linked Type</span></dt>
+        <dd>
+          <div *ngIf="attribute.linkedType">
+            <a [routerLink]="['/business-object', attribute.linkedType?.id, 'view']">{{ attribute.linkedType?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/attribute', attribute.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

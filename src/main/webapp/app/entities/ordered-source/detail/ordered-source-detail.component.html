@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="orderedSource">
+      <h2 data-cy="orderedSourceDetailsHeading"><span jhiTranslate="dicoCarmignacApp.orderedSource.detail.title">Ordered Source</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ orderedSource.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.orderedSource.orderSource">Order Source</span></dt>
+        <dd>
+          <span>{{ orderedSource.orderSource }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.orderedSource.updateDate">Update Date</span></dt>
+        <dd>
+          <span>{{ orderedSource.updateDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.orderedSource.creationDate">Creation Date</span></dt>
+        <dd>
+          <span>{{ orderedSource.creationDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.orderedSource.linkedSource">Linked Source</span></dt>
+        <dd>
+          <div *ngIf="orderedSource.linkedSource">
+            <a [routerLink]="['/source', orderedSource.linkedSource?.id, 'view']">{{ orderedSource.linkedSource?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="dicoCarmignacApp.orderedSource.sourcePriority">Source Priority</span></dt>
+        <dd>
+          <div *ngIf="orderedSource.sourcePriority">
+            <a [routerLink]="['/source-priority', orderedSource.sourcePriority?.id, 'view']">{{ orderedSource.sourcePriority?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/ordered-source', orderedSource.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

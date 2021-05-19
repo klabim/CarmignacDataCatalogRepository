@@ -1,0 +1,58 @@
+{
+  "name": "RoleManagement",
+  "fields": [
+    {
+      "fieldName": "idDataRole",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "updateDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "creationDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "attribute",
+      "otherEntityRelationshipName": "roleManagement",
+      "relationshipName": "respByException",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "businessObject",
+      "otherEntityRelationshipName": "roleManagement",
+      "relationshipName": "responsible",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dataRole",
+      "otherEntityRelationshipName": "roleManagement",
+      "relationshipName": "dataRole",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dataService",
+      "otherEntityRelationshipName": "roleManagement",
+      "relationshipName": "dataService",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "role_management",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210519150820"
+}

@@ -1,0 +1,109 @@
+entity Attribute {
+id UUID unique,
+name String,
+internalExternal String,
+cardinality String,
+enumeration String,
+lPattern String,
+longName String ,
+definition String,
+updateDate LocalDate, 
+creationDate LocalDate
+}
+
+entity BusinessObject
+{
+	idBo UUID unique, 
+    name String,
+    definition String,
+	updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+
+entity Source
+{
+	idGloden UUID unique , 
+    name String,
+    description String,
+    	updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+entity DataService
+{
+	idService UUID unique,
+    name String, 
+    description String,
+    updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+entity DataRole
+{
+	idDataRole UUID unique,
+    name String, 
+    description String,
+    updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+entity RoleManagement
+{
+	idDataRole UUID unique,
+    updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+entity SourcePriority
+{
+	idSourcePriority UUID unique,
+    name String, 
+    description String,
+    updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+entity OrderedSource
+{
+	orderSource Integer required, 
+		updateDate LocalDate, 
+    creationDate LocalDate 
+}
+
+relationship OneToOne {
+	Attribute{goldenSourcePriority} to SourcePriority
+}
+
+relationship OneToMany {
+	SourcePriority{attributeList} to OrderedSource{sourcePriority}
+}
+
+relationship OneToOne {
+	OrderedSource{linkedSource} to Source
+}
+
+relationship ManyToOne {
+	BusinessObject{attributeList} to Attribute{businessObject}
+}
+
+relationship OneToOne {
+	RoleManagement{respByException} to Attribute
+}
+
+relationship OneToOne {
+	RoleManagement{responsible} to BusinessObject
+}
+
+relationship OneToOne {
+	RoleManagement{dataRole} to DataRole
+}
+
+relationship OneToOne {
+	RoleManagement{dataService} to DataService
+}
+
+relationship OneToOne {
+	Attribute{linkedType} to BusinessObject
+}
+
